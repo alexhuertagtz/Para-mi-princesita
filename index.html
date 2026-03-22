@@ -51,12 +51,18 @@
     background: yellow;
     border-radius: 50%;
     box-shadow: 0 0 10px yellow, 10px 0 10px yellow, -10px 0 10px yellow, 0 10px 10px yellow, 0 -10px 10px yellow;
-    animation: flutter 10s linear infinite;
+    animation: subir 10s linear infinite;
   }
 
-  @keyframes flutter {
-    0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(-50px) translateX(50px) rotate(360deg); opacity: 0; }
+  @keyframes subir {
+    0% {
+      transform: translateY(100vh);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-10vh);
+      opacity: 0;
+    }
   }
 
   #botonOprimeme {
@@ -76,7 +82,6 @@
     background:black;
     color:white;
     font-size:40px;
-    display:flex;
     justify-content:center;
     align-items:center;
     text-align:center;
@@ -117,10 +122,10 @@
 
 <audio id="musica" src="cancion1.mp3" preload="auto"></audio>
 
-<img src="dudu1.gif" class="gif-left" alt="GIF izquierda">
-<img src="dudu2.gif" class="gif-right" alt="GIF derecha">
+<img src="dudu1.gif" class="gif-left">
+<img src="dudu2.gif" class="gif-right">
 
-<img src="rosa1.png" class="ramo" alt="Ramo de flores">
+<img src="rosa1.png" class="ramo">
 
 <h1>Para Soledad, mi princesita</h1>
 <p>
@@ -136,9 +141,9 @@ Con todo mi cariño, para ti, mi princesita.
 
 <div id="pantallaNegra">
   <p>Te quiero muchísimo.<br>Gracias por estar a mi lado.</p>
-  <img src="foto1.jpg" class="fotoCollage" alt="Foto 1">
-  <img src="foto2.jpg" class="fotoCollage" alt="Foto 2">
-  <img src="foto3.jpg" class="fotoCollage" alt="Foto 3">
+  <img src="foto1.jpg" class="fotoCollage">
+  <img src="foto2.jpg" class="fotoCollage">
+  <img src="foto3.jpg" class="fotoCollage">
 </div>
 
 <script>
@@ -149,11 +154,7 @@ Con todo mi cariño, para ti, mi princesita.
       let flor = document.createElement("div");
       flor.classList.add("flor");
       flor.style.left = Math.random() * window.innerWidth + "px";
-      flor.style.top = window.innerHeight + Math.random() * 50 + "px";
-      let size = 10 + Math.random() * 20;
-      flor.style.width = size + "px";
-      flor.style.height = size + "px";
-      flor.style.animationDuration = 5 + Math.random() * 5 + "s";
+      flor.style.animationDuration = (5 + Math.random() * 5) + "s";
       document.body.appendChild(flor);
     }
   }
@@ -180,6 +181,9 @@ Con todo mi cariño, para ti, mi princesita.
     });
   };
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
