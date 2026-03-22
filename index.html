@@ -1,111 +1,75 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Para ti</title>
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            background: black;
-            color: white;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-        }
+<meta charset="UTF-8">
+<title>Para mi princesita</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    position: relative;
+  }
 
-        .contenedor {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            height: 100%;
-            position: relative;
-            z-index: 1;
-        }
+  .ramo {
+    margin-top: 50px;
+    width: 300px;
+  }
 
-        .ramo-grande .ramo-img {
-            width: 300px;
-            height: auto;
-            margin-bottom: 20px;
-        }
+  .gif-left, .gif-right {
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100px;
+  }
+  .gif-left { left: 0; }
+  .gif-right { right: 0; }
 
-        .gif {
-            position: fixed;
-            top: 0;
-            width: 100px;
-            height: auto;
-            z-index: 10;
-        }
+  h1 {
+    margin-top: 30px;
+    text-align: center;
+  }
+  p {
+    max-width: 600px;
+    text-align: center;
+    line-height: 1.5;
+    margin-top: 20px;
+  }
 
-        .esquina-izquierda {
-            left: 0;
-        }
+  .flor {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: yellow;
+    border-radius: 50%;
+    box-shadow: 0 0 10px yellow, 10px 0 10px yellow, -10px 0 10px yellow, 0 10px 10px yellow, 0 -10px 10px yellow;
+    animation: flutter 10s linear infinite;
+  }
 
-        .esquina-derecha {
-            right: 0;
-        }
-
-        .flor-flotante {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: yellow;
-            border-radius: 50%;
-            box-shadow: 0 0 10px yellow, 0 0 20px yellow;
-            animation: subir 10s linear infinite;
-            opacity: 0.8;
-            z-index: 0;
-        }
-
-        @keyframes subir {
-            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
-            20% { opacity: 0.6; }
-            50% { transform: translateY(50vh) translateX(20px); opacity: 0.8; }
-            80% { opacity: 0.6; }
-            100% { transform: translateY(-20px) translateX(-10px); opacity: 0; }
-        }
-    </style>
+  @keyframes flutter {
+    0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-50px) translateX(50px) rotate(360deg); opacity: 0; }
+  }
+</style>
 </head>
 <body>
-    <audio id="miAudio" loop>
-        <source src="cancion1.mp3" type="audio/mpeg">
-    </audio>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var audio = document.getElementById("miAudio");
-            audio.volume = 0.2;
+<audio id="musica" src="cancion1.mp3" preload="auto"></audio>
 
-            function iniciarAudio() {
-                audio.play().catch(() => {});
-                document.removeEventListener("click", iniciarAudio);
-            }
+<img src="dudu1.gif" class="gif-left" alt="GIF izquierda">
+<img src="dudu2.gif" class="gif-right" alt="GIF derecha">
 
-            document.addEventListener("click", iniciarAudio);
+<img src="rosa1.png" class="ramo" alt="Ramo de flores">
 
-            for (let i = 0; i < 30; i++) {
-                let flor = document.createElement("div");
-                flor.classList.add("flor-flotante");
-                flor.style.left = Math.random() * 100 + "vw";
-                flor.style.animationDelay = Math.random() * 10 + "s";
-                flor.style.width = 15 + Math.random() * 15 + "px";
-                flor.style.height = flor.style.width;
-                document.body.appendChild(flor);
-            }
-        });
-    </script>
-
-    <img src="dudu1.gif" class="gif esquina-izquierda">
-    <img src="dudu2.gif" class="gif esquina-derecha">
-
-    <div class="contenedor">
-        <div class="ramo-grande">
-            <img src="rosa1.png" alt="Ramo de flores" class="ramo-img">
-        </div>
-
-        <h1>Para Soledad, mi princesita</h1>
-        <p>
+<h1>Para Soledad, mi princesita</h1>
+<p>
 Perdón por la tardanza, princesa hermosa…<br>
 Aunque llegó un poquito después, quise dedicarte este pequeño detalle con todo mi cariño.<br>
 Espero que al verlo se dibuje una sonrisa en tu rostro y sientas un poquito del afecto que siempre guardaré para ti.<br>
@@ -113,18 +77,24 @@ Gracias por los momentos lindos que compartimos, por las risas, las charlas y ca
 Deseo que tu día esté lleno de alegría, luz y cosas bonitas, y que siempre tengas motivos para sonreír.<br>
 Con todo mi cariño, para ti, mi princesita.
 </p>
-    </div>
-</body>
 
-<!-- Flores -->
 <script>
-    for (let i = 0; i < 20; i++) {
-        let flor = document.createElement("div");
-        flor.classList.add("flor");
-        flor.style.left = Math.random() * 100 + "vw";
-        flor.style.animationDuration = (5 + Math.random() * 10) + "s";
-        document.body.appendChild(flor);
-    }
+  const numeroFlores = 30;
+  for (let i = 0; i < numeroFlores; i++) {
+    let flor = document.createElement("div");
+    flor.classList.add("flor");
+    flor.style.left = Math.random() * window.innerWidth + "px";
+    flor.style.animationDuration = 5 + Math.random() * 5 + "s";
+    flor.style.width = 15 + Math.random() * 15 + "px";
+    flor.style.height = flor.style.width;
+    document.body.appendChild(flor);
+  }
+
+  document.body.addEventListener("click", () => {
+    const musica = document.getElementById("musica");
+    musica.volume = 0.3;
+    musica.play();
+  });
 </script>
 
 </body>
