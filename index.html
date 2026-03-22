@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Para ti</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .contenedor {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ramo-grande .ramo-img {
+            width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .gif {
+            position: fixed;
+            top: 0;
+            width: 100px;
+            height: auto;
+            z-index: 10;
+        }
+
+        .esquina-izquierda {
+            left: 0;
+        }
+
+        .esquina-derecha {
+            right: 0;
+        }
+
+        .flor-flotante {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: yellow;
+            border-radius: 50%;
+            box-shadow: 0 0 10px yellow, 0 0 20px yellow;
+            animation: subir 10s linear infinite;
+            opacity: 0.8;
+            z-index: 0;
+        }
+
+        @keyframes subir {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            20% { opacity: 0.6; }
+            50% { transform: translateY(50vh) translateX(20px); opacity: 0.8; }
+            80% { opacity: 0.6; }
+            100% { transform: translateY(-20px) translateX(-10px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <audio id="miAudio" loop>
+        <source src="cancion1.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var audio = document.getElementById("miAudio");
+            audio.volume = 0.2;
+
+            function iniciarAudio() {
+                audio.play().catch(() => {});
+                document.removeEventListener("click", iniciarAudio);
+            }
+
+            document.addEventListener("click", iniciarAudio);
+
+            for (let i = 0; i < 30; i++) {
+                let flor = document.createElement("div");
+                flor.classList.add("flor-flotante");
+                flor.style.left = Math.random() * 100 + "vw";
+                flor.style.animationDelay = Math.random() * 10 + "s";
+                flor.style.width = 15 + Math.random() * 15 + "px";
+                flor.style.height = flor.style.width;
+                document.body.appendChild(flor);
+            }
+        });
+    </script>
+
+    <img src="dudu1.gif" class="gif esquina-izquierda">
+    <img src="dudu2.gif" class="gif esquina-derecha">
+
+    <div class="contenedor">
+        <div class="ramo-grande">
+            <img src="rosa1.png" alt="Ramo de flores" class="ramo-img">
+        </div>
+
+        <h1>Para Soledad, mi princesita</h1>
+        <p> Sé que las rosas amarillas eran para el 21 de marzo.. y aunque es tarde, quise dedicarte este pequeño detalle con cariño. Espero que te saque una pequeña sonrisa, gracias por todos los momentos que compartimos.</p>
+    </div>
+</body>
+
+<!-- Flores -->
+<script>
+    for (let i = 0; i < 20; i++) {
+        let flor = document.createElement("div");
+        flor.classList.add("flor");
+        flor.style.left = Math.random() * 100 + "vw";
+        flor.style.animationDuration = (5 + Math.random() * 10) + "s";
+        document.body.appendChild(flor);
+    }
+</script>
+
+</body>
+</html>
