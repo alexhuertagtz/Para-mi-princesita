@@ -36,6 +36,7 @@
     margin-top: 30px;
     text-align: center;
   }
+
   p {
     max-width: 600px;
     text-align: center;
@@ -74,7 +75,7 @@
     height:100%;
     background:black;
     color:white;
-    font-size:48px;
+    font-size:40px;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -101,14 +102,14 @@
 
   .fotoCollage {
     position: absolute;
-    width: 80px;
-    height: 80px;
+    width: 150px;
+    height: 150px;
     border-radius: 10px;
   }
 
-  .fotoCollage:nth-child(2) { top: 20%; left: 10%; }
-  .fotoCollage:nth-child(3) { top: 30%; right: 15%; }
-  .fotoCollage:nth-child(4) { bottom: 20%; left: 20%; }
+  .fotoCollage:nth-child(2) { top: 15%; left: 5%; }
+  .fotoCollage:nth-child(3) { top: 25%; right: 10%; }
+  .fotoCollage:nth-child(4) { bottom: 15%; left: 15%; }
 
 </style>
 </head>
@@ -134,7 +135,7 @@ Con todo mi cariño, para ti, mi princesita.
 <button id="botonOprimeme">Oprímeme</button>
 
 <div id="pantallaNegra">
-  <p>Te quiero muchísimo</p>
+  <p>Te quiero muchísimo.<br>Gracias por estar a mi lado.</p>
   <img src="foto1.jpg" class="fotoCollage" alt="Foto 1">
   <img src="foto2.jpg" class="fotoCollage" alt="Foto 2">
   <img src="foto3.jpg" class="fotoCollage" alt="Foto 3">
@@ -170,7 +171,7 @@ Con todo mi cariño, para ti, mi princesita.
     const pantalla = document.getElementById("pantallaNegra");
 
     boton.addEventListener("click", (e) => {
-      e.stopPropagation(); 
+      e.stopPropagation();
       pantalla.classList.add("mostrar");
     });
 
@@ -181,5 +182,4 @@ Con todo mi cariño, para ti, mi princesita.
 </script>
 
 </body>
-</html>
 </html>
