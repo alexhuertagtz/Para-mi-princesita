@@ -57,6 +57,59 @@
     0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 1; }
     100% { transform: translateY(-50px) translateX(50px) rotate(360deg); opacity: 0; }
   }
+
+  #botonOprimeme {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  #pantallaNegra {
+    display: none;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:black;
+    color:white;
+    font-size:48px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    z-index:1000;
+    opacity:0;
+    transform: scale(0.8);
+    transition: opacity 1s ease-in-out, transform 0.5s cubic-bezier(0.68,-0.55,0.27,1.55);
+    flex-direction: column;
+  }
+
+  #pantallaNegra.mostrar {
+    display:flex;
+    opacity:1;
+    transform: scale(1.1);
+    animation: rebote 0.5s forwards;
+  }
+
+  @keyframes rebote {
+    0% { transform: scale(0.8); }
+    60% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+  }
+
+  .fotoCollage {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+  }
+
+  .fotoCollage:nth-child(2) { top: 20%; left: 10%; }
+  .fotoCollage:nth-child(3) { top: 30%; right: 15%; }
+  .fotoCollage:nth-child(4) { bottom: 20%; left: 20%; }
+
 </style>
 </head>
 <body>
@@ -78,24 +131,55 @@ Deseo que tu día esté lleno de alegría, luz y cosas bonitas, y que siempre te
 Con todo mi cariño, para ti, mi princesita.
 </p>
 
+<button id="botonOprimeme">Oprímeme</button>
+
+<div id="pantallaNegra">
+  <p>Te quiero muchísimo</p>
+  <img src="foto1.jpg" class="fotoCollage" alt="Foto 1">
+  <img src="foto2.jpg" class="fotoCollage" alt="Foto 2">
+  <img src="foto3.jpg" class="fotoCollage" alt="Foto 3">
+</div>
+
 <script>
   const numeroFlores = 30;
-  for (let i = 0; i < numeroFlores; i++) {
-    let flor = document.createElement("div");
-    flor.classList.add("flor");
-    flor.style.left = Math.random() * window.innerWidth + "px";
-    flor.style.animationDuration = 5 + Math.random() * 5 + "s";
-    flor.style.width = 15 + Math.random() * 15 + "px";
-    flor.style.height = flor.style.width;
-    document.body.appendChild(flor);
+
+  function crearFlores() {
+    for (let i = 0; i < numeroFlores; i++) {
+      let flor = document.createElement("div");
+      flor.classList.add("flor");
+      flor.style.left = Math.random() * window.innerWidth + "px";
+      flor.style.top = window.innerHeight + Math.random() * 50 + "px";
+      let size = 10 + Math.random() * 20;
+      flor.style.width = size + "px";
+      flor.style.height = size + "px";
+      flor.style.animationDuration = 5 + Math.random() * 5 + "s";
+      document.body.appendChild(flor);
+    }
   }
 
-  document.body.addEventListener("click", () => {
+  window.onload = function() {
+    crearFlores();
+
     const musica = document.getElementById("musica");
-    musica.volume = 0.3;
-    musica.play();
-  });
+    document.body.addEventListener("click", () => {
+      musica.volume = 0.3;
+      musica.play();
+    });
+
+    const boton = document.getElementById("botonOprimeme");
+    const pantalla = document.getElementById("pantallaNegra");
+
+    boton.addEventListener("click", (e) => {
+      e.stopPropagation(); 
+      pantalla.classList.add("mostrar");
+    });
+
+    pantalla.addEventListener("click", () => {
+      pantalla.classList.remove("mostrar");
+    });
+  };
 </script>
 
 </body>
+</html>
 </html>
